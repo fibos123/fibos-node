@@ -1,8 +1,6 @@
 services:
   node-server:
-    image: mingfunwong/fibos
-    volumes:
-      - ./fibos-node/data:/node/data
+    image: mingfunwong/fibos:v5.0.3.0.1
     ports:
       - "8080:8870"
       - "9870:9870"
