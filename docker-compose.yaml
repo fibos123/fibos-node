@@ -1,16 +1,12 @@
 services:
-  fibos:
-    image: docker.io/mingfunwong/fibos
-    restart: always
-    stop_grace_period: 1m
+  node-server:
+    image: mingfunwong/fibos
+    volumes:
+      - ./fibos-node/data:/node/data
     ports:
-      - '8080:8080'
-      - '9977:9977'
-    environment:
-      PRODUCER_ENABLE: 'false'
-      PRODUCER_NAME: fibos123comm
-      PUBLIC_KEY:
-      PRIVATE_KEY:
-      PRODUCER_API_ENABLE: 'false'
-      SNAPSHOT_ENABLE: 'true'
-      SNAPSHOT_URL: https://snapshots.fibos123.com/latest.bin
+      - "8080:8870"
+      - "9870:9870"
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    stop_grace_period: 1m

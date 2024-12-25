@@ -1,25 +1,18 @@
 #!/bin/bash
 set -e
 
-SNAPSHOT_FOLDER=./data/snapshots
+NODE_DIR=/node/data
+SNAPSHOT_DIR=/node/data/snapshots/
+SNAPSHOT_PATH=/node/data/snapshots/snapshots.bin
 
-if [ "$SNAPSHOT_ENABLE" != "false" ]; then
+rm -f $NODE_DIR/config.ini
+rm -f $NODE_DIR/snapshots/*
+rm -rf $NODE_DIR/blocks
+rm -rf $NODE_DIR/protocol_features
+rm -rf $NODE_DIR/state
 
-  export SNAPSHOT_FILE=$SNAPSHOT_FOLDER/snapshot.bin
-  rm -rf ./data/*
+mkdir -p $SNAPSHOT_DIR
 
-  if [ ! -d "./data" ];then
-    mkdir ./data
-  fi
+curl -o "$SNAPSHOT_PATH" "$SNAPSHOT_URL"
 
-  if [ ! -d "./data/snapshots" ];then
-    mkdir ./data/snapshots
-  fi
-
-  if [ ! $SNAPSHOT_URL ]; then  
-    SNAPSHOT_URL=$(curl https://api.fibos123.com/last_snapshot)
-  fi
-  wget $SNAPSHOT_URL -O $SNAPSHOT_FILE
-fi
-
-fibos ./start.js
+sh ./entrypoint.sh node
