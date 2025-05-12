@@ -52,10 +52,17 @@ let producer_config = {
 	'snapshots-dir': 'snapshots'
 }
 
+let cross_config = {}
+
 if (producername && public_key && private_key) {
+	// producer plugin config
+
 	producer_config['producer-name'] = producername;
-	// producer_config['enable-stale-production'] = true;
+	producer_config['enable-stale-production'] = true;
 	producer_config['signature-provider'] = `${public_key}=KEY:${private_key}`;
+
+	cross_config['signature-producer'] = producername;
+	cross_config['signature-private-key'] = private_key;
 }
 
 if(producer_config){
@@ -66,6 +73,6 @@ if(producer_config){
 fibos.load("chain", chain_config);
 fibos.load("chain_api");
 
-fibos.load("cross");
+fibos.load("cross", cross_config);
 
 fibos.start();
