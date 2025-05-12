@@ -58,7 +58,7 @@ if (producername && public_key && private_key) {
 	// producer plugin config
 
 	producer_config['producer-name'] = producername;
-	producer_config['enable-stale-production'] = true;
+	// producer_config['enable-stale-production'] = true;
 	producer_config['signature-provider'] = `${public_key}=KEY:${private_key}`;
 
 	cross_config['signature-producer'] = producername;
