@@ -42,6 +42,7 @@ fibos.load("http", {
 
 fibos.load("net", {
 	"max-clients": 100,
+	"p2p-max-nodes-per-host": 15,
 	"p2p-peer-address": p2paddress,
 	"p2p-listen-endpoint": `0.0.0.0:${p2pPort}`,
 	"agent-name": "FIBOS Bp"
