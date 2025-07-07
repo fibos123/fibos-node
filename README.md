@@ -26,13 +26,3 @@ PRODUCER_PUBLIC_KEY=FO6*****************CV # BP 公钥
 ```bash
 sudo docker-compose up -d
 ```
-
-监控等待区块同步完成
-```bash
-sudo docker-compose logs -f --tail 100
-```
-
-当区块同步完成后，使用以下命令进行开始生产
-```
-curl http://127.0.0.1:8080/v1/producer/resume
-```
